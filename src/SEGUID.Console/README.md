@@ -5,7 +5,7 @@ This C# program, seguid, implements SEGUID v2 together with the original SEGUID 
 ## Installation
 
 ### Option 1: Using pre-built binaries
-1. Download the latest release from the [Releases](link-to-releases) page
+1. Download the latest release from the [Releases](https://github.com/seguid/seguid-csharp/releases/tag/v.1.0.0) page
 2. Extract the zip file
 3. Add the directory containing `seguid.exe` to your system PATH, or run it directly from the extracted location
 

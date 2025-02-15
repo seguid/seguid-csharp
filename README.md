@@ -5,7 +5,7 @@ This C# program, seguid, implements SEGUID v2 together with the original SEGUID 
 ## Installation
 
 ### Option 1: Using pre-built binaries
-1. Download the latest release from the [Releases](link-to-releases) page
+1. Download the latest release from the [Releases](https://github.com/seguid/seguid-csharp/releases/tag/v.1.0.0) page
 2. Extract the zip file
 3. Add the directory containing `seguid.exe` to your system PATH, or run it directly from the extracted location
 
@@ -66,7 +66,27 @@ In  code:
 
 ## License
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+MIT License
+
+Copyright (c) 2025 Gyorgy Babnigg
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## Author
 
