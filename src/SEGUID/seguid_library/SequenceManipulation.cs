@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SEGUID
 {
@@ -51,8 +52,52 @@ namespace SEGUID
             return new string(seq.Reverse().ToArray());
         }
 
+
+
         /// <summary>
-        /// Finds the minimum rotation point of a sequence using the Perl algorithm.
+        /// Reverse complement of a DNA sequence.
+        /// </summary>
+        /// <param name="seq">The sequence to generate reverse complement</param>
+        /// <returns>The reversed complement sequence (5' -> 3')</returns>
+        /// <exception cref="ArgumentNullException">Thrown when seq is null</exception>
+        public static string ReverseComplementDNA(string seq)
+        {
+            if (seq == null)
+                throw new ArgumentNullException(nameof(seq), "Argument 'seq' must be a string");
+
+            // Convert to uppercase and remove invalid characters
+            seq = seq.ToUpper();
+            seq = Regex.Replace(seq, "[^AGCT]", "");
+
+            if (string.IsNullOrEmpty(seq))
+                throw new ArgumentException("A protein sequence must not be empty");
+
+            StringBuilder reverseComplement = new StringBuilder(seq.Length);
+            for (int i = seq.Length - 1; i >= 0; i--)
+            {
+                switch (seq[i])
+                {
+                    case 'A':
+                        reverseComplement.Append('T');
+                        break;
+                    case 'T':
+                        reverseComplement.Append('A');
+                        break;
+                    case 'G':
+                        reverseComplement.Append('C');
+                        break;
+                    case 'C':
+                        reverseComplement.Append('G');
+                        break;
+                }
+            }
+            return reverseComplement.ToString();
+        }
+
+
+
+        /// <summary>
+        /// Finds the minimum rotation point of a sequence
         /// </summary>
         /// <param name="s">The sequence to analyze</param>
         /// <returns>The rotation amount that gives the minimum sequence</returns>

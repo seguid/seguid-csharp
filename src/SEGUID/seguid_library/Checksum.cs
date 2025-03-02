@@ -19,6 +19,7 @@ namespace SEGUID
         private const string CdSeguidPrefix = "cdseguid=";
         private const string SeguidV1Prefix = "seguidv1=";
         private const string SeguidV1UrlSafePrefix = "seguidv1urlsafe=";
+        private const string CcSeguidPrefix = "ccseguid=";
         private const int ShortLength = 6;
 
         private static readonly HashSet<char> Base64Alphabet = new HashSet<char>(
@@ -207,5 +208,70 @@ namespace SEGUID
                 form
             );
         }
+
+
+        public static string CcSeguid(string watson,  string form = "long")
+        {
+            if (string.IsNullOrEmpty(watson))
+                throw new ArgumentException("Watson sequence must not be empty");
+
+            string alphabet = "{DNA}";
+            watson = watson.ToUpper();
+
+            string crick = SequenceManipulation.ReverseComplementDNA(watson);
+
+            SequenceValidator.AssertComplementary(watson, crick, alphabet);
+
+
+            string reversedWatson = SequenceManipulation.Reverse(watson);
+            string reversedCrick = SequenceManipulation.Reverse(crick);
+
+            SequenceValidator.AssertComplementary(reversedWatson, reversedCrick, alphabet);
+
+
+            const string concatConnector = "TTTT";
+            string concatenated = watson + concatConnector + crick;
+            int minRotationConcat = SequenceManipulation.MinRotation(concatenated);
+
+            string w, c;
+            if (minRotationConcat < watson.Length)
+            {
+                // Watson
+                int ind = minRotationConcat;
+                w = SequenceManipulation.Rotate(watson, ind);
+                c = SequenceManipulation.Rotate(crick, crick.Length - ind);
+            }
+            else if(minRotationConcat < watson.Length + concatConnector.Length + crick.Length)
+            {
+                // Crick
+                int ind = minRotationConcat - (watson.Length + concatConnector.Length);
+                w = SequenceManipulation.Rotate(crick, ind);
+                c = SequenceManipulation.Rotate(watson, watson.Length - ind);
+            }
+            else if (minRotationConcat < watson.Length + concatConnector.Length + crick.Length + concatConnector.Length + reversedWatson.Length)
+            {
+                // reversedWatson
+                int ind = minRotationConcat - (watson.Length + concatConnector.Length + crick.Length + concatConnector.Length);
+                w = SequenceManipulation.Rotate(reversedWatson, ind);
+                c = SequenceManipulation.Rotate(reversedCrick, reversedCrick.Length - ind);
+            }
+            else
+            {
+                // reversedCrick
+                int ind = minRotationConcat - (watson.Length + concatConnector.Length + crick.Length + concatConnector.Length + reversedWatson.Length + concatConnector.Length);
+                w = SequenceManipulation.Rotate(reversedCrick, ind);
+                c = SequenceManipulation.Rotate(reversedWatson, reversedWatson.Length - ind);
+            }
+
+            string result = LdSeguid(w, c, alphabet, "long");
+            return FormatChecksum(
+                CcSeguidPrefix,
+                result.Substring(LdSeguidPrefix.Length),
+                form
+            );
+        }
+
+
+
     }
 }
