@@ -19,7 +19,6 @@ namespace SEGUID
         private const string CdSeguidPrefix = "cdseguid=";
         private const string SeguidV1Prefix = "seguidv1=";
         private const string SeguidV1UrlSafePrefix = "seguidv1urlsafe=";
-        private const string CcSeguidPrefix = "ccseguid=";
         private const int ShortLength = 6;
 
         private static readonly HashSet<char> Base64Alphabet = new HashSet<char>(
