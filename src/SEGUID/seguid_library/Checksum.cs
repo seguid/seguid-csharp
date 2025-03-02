@@ -222,7 +222,34 @@ namespace SEGUID
 
             SequenceValidator.AssertComplementary(watson, crick, alphabet);
 
-            return CdSeguid(watson, crick, alphabet, form);
+            const string concatConnector = "TTTT";
+            string concatenated = watson + concatConnector + crick;
+            int minRotationConcat = SequenceManipulation.MinRotation(concatenated);
+
+            string w, c;
+            if (minRotationConcat < watson.Length)
+            {
+                // Watson
+                int ind = minRotationConcat;
+                w = SequenceManipulation.Rotate(watson, ind);
+                c = SequenceManipulation.Rotate(crick, crick.Length - ind);
+            }
+            else
+            {
+                // Crick
+                int ind = minRotationConcat - watson.Length - concatConnector.Length;
+                w = SequenceManipulation.Rotate(crick, ind);
+                c = SequenceManipulation.Rotate(watson, watson.Length - ind);
+            }
+
+            string result = LdSeguid(w, c, alphabet, "long");
+            return FormatChecksum(
+                CcSeguidPrefix,
+                result.Substring(LdSeguidPrefix.Length),
+                form
+            );
+
+
         }
 
 
