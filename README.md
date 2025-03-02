@@ -241,6 +241,7 @@ public class Program
 | circular  | double       | cdseguid  |
 
 
+ccseguid calculates the checksum for a circular, single-stranded sequence, representing either the 5' to 3' or 3' to 5' direction of a plasmid for example. Any characters other than A, C, G, and T will be ignored.
 
 
 
