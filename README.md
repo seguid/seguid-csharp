@@ -64,6 +64,11 @@ In  code:
 | linear    | double       | ldseguid  |
 | circular  | double       | cdseguid  |
 
+
+
+
+
+
 ## License
 
 MIT License

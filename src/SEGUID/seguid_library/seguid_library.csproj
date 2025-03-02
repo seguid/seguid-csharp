@@ -14,6 +14,7 @@
     <PackageTags>SEGUID;CSharp;Library</PackageTags>
     <RepositoryUrl>https://github.com/seguid/seguid-csharp</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

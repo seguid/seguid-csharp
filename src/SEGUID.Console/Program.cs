@@ -37,9 +37,13 @@ Examples:
  echo 'ACGT;TGCA' | seguid --type=ldseguid
  echo '-CGT;ACGT' | seguid --type=ldseguid
  echo 'ACGU' | seguid --type=lsseguid --alphabet='{{RNA}}'
+ echo 'tcgcgcgtttcggtgatgacggtgaaaacctctgacacatgcagctcccggagacggtcacagcttgtctgtaagcggatgccgggagcagacaagcccgtcagggcgcgtcagcgggtgttggcgggtgtcggggctggcttaactatg'
+     | seguid --type=ccseguid 
+
+
 
 Version: {Version}
-Copyright: Your Name (2024)
+Copyright: Gyorgy Babnigg (2025)
 License: MIT License";
 
         public class Options
@@ -170,6 +174,9 @@ License: MIT License";
 
                 case "csseguid":
                     return Checksum.CsSeguid(sequence, options.Alphabet, options.Form);
+
+                case "ccseguid":
+                    return Checksum.CcSeguid(sequence, options.Form);
 
                 case "ldseguid":
                 case "cdseguid":
