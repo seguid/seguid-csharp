@@ -41,18 +41,18 @@ From command line:
 
 ```bash
 # Calculate SEGUID for a DNA sequence
-echo "ACGT" | .\seguid.exe
+echo "ACGT" | seguid
 
 # Calculate LSSEGUID with RNA alphabet
-echo "ACGU" | .\seguid.exe --type=lsseguid --alphabet={RNA}
+echo "ACGU" | seguid --type=lsseguid --alphabet={RNA}
 
 # Calculate LDSEGUID for double-stranded sequence
-echo "ACGT;TGCA" | .\seguid.exe --type=ldseguid
+echo "ACGT;TGCA" | seguid --type=ldseguid
 ```
 
 For help and available options:
 ```bash
-.\seguid.exe --help
+seguid --help
 ```
 
 
